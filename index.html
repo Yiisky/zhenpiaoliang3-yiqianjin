@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>怡千金的芒信</title>
+    <title>怡千金的微信</title>
     <meta name="theme-color" content="#07c160">
     <!-- PWA 支持 -->
     <link rel="manifest" href="manifest.json">
@@ -14,19 +14,54 @@
     <!-- 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; }
-        html, body { height: 100%; overflow: hidden; background: #ededed; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent; 
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; 
+        }
+        html, body { 
+            height: 100%; 
+            overflow: hidden; 
+            background: #ededed; 
+            -webkit-font-smoothing: antialiased;
+        }
 
         /* 全屏容器 */
-        #app { height: 100vh; display: flex; flex-direction: column; background: #f8f8f8; }
+        #app { 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            background: #f8f8f8; 
+        }
 
         /* 1. 顶部状态栏 (模仿手机) */
-        .status-bar { height: 44px; background: #000; color: white; padding: 0 15px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
-        .status-left { display: flex; align-items: center; }
-        .time { font-weight: 600; margin-right: 5px; }
-        .status-right i { margin-left: 8px; font-size: 13px; }
+        .status-bar { 
+            height: 20px; 
+            background: #000; 
+            color: white; 
+            padding: 0 15px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-size: 12px; 
+            line-height: 1;
+        }
+        .status-left { 
+            display: flex; 
+            align-items: center; 
+        }
+        .time { 
+            font-weight: 600; 
+            margin-right: 5px; 
+        }
+        .status-right i { 
+            margin-left: 8px; 
+            font-size: 12px; 
+        }
 
-        /* 2. 芒信首页标题栏 - 恢复原有样式（首页显示） */
+        /* 2. 微信首页标题栏 - 恢复原有样式（首页显示） */
         .navbar-home {
             height: 44px;
             background: #ededed;
@@ -36,6 +71,7 @@
             position: relative;
             border-bottom: 1px solid #dcdcdc;
             flex-shrink: 0; /* 防止压缩 */
+            padding-top: 4px;
         }
         .navbar-home .title {
             font-size: 17px;
@@ -89,8 +125,12 @@
             font-size: 20px;
             margin-right: 12px;
             flex-shrink: 0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
-        .session-info { flex: 1; min-width: 0; }
+        .session-info { 
+            flex: 1; 
+            min-width: 0; 
+        }
         .session-row1 {
             display: flex;
             justify-content: space-between;
@@ -178,6 +218,7 @@
             overflow-y: auto;
             padding: 15px;
             background: #f0f0f0;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZjBmMGYwIi8+PHBhdGggZD0iTTAgMEwyMCAyME0yMCAwTDAgMjAiIHN0cm9rZT0iI2U5ZTllOSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+');
         }
         .message {
             display: flex;
@@ -201,6 +242,7 @@
             flex-shrink: 0;
             /* 微调：增加一点顶部间距，视觉更自然 */
             margin-top: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         .message.received .message-avatar {
             margin-right: 10px; /* 接收消息头像右侧间距 */
@@ -217,6 +259,7 @@
             word-wrap: break-word;
             font-size: 16px;
             line-height: 1.4;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         .message.received .message-content {
             background: white;
@@ -225,6 +268,23 @@
         .message.sent .message-content {
             background: #95ec69;
             border-top-right-radius: 4px;
+        }
+        /* 消息气泡箭头 */
+        .message.received .message-content::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 10px;
+            border: 6px solid transparent;
+            border-right-color: white;
+        }
+        .message.sent .message-content::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 10px;
+            border: 6px solid transparent;
+            border-left-color: #95ec69;
         }
         /* 消息时间 */
         .message-time {
@@ -290,6 +350,56 @@
             content: attr(placeholder);
             color: #b2b2b2;
         }
+        
+        /* 滚动条样式 */
+        .sessions-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sessions-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .sessions-container::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 2px;
+        }
+        .chat-messages::-webkit-scrollbar {
+            width: 4px;
+        }
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.2);
+            border-radius: 2px;
+        }
+        
+        /* 微信下拉刷新效果 */
+        .pull-to-refresh {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8a8a8a;
+            font-size: 14px;
+        }
+        
+        /* 消息气泡动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* 状态栏图标样式优化 */
+        .status-right i {
+            -webkit-text-stroke: 0.5px rgba(255,255,255,0.2);
+        }
     </style>
 </head>
 <body>
@@ -300,18 +410,18 @@
                 <span class="time" id="currentTime">14:30</span>
             </div>
             <div class="status-right">
-                <i class="fas fa-signal"></i>
-                <i class="fas fa-wifi"></i>
-                <i class="fas fa-battery-three-quarters"></i>
+                <i class="fas fa-signal" title="信号"></i>
+                <i class="fas fa-wifi" title="WiFi"></i>
+                <i class="fas fa-battery-three-quarters" title="电量"></i>
             </div>
         </div>
 
-        <!-- 芒信首页标题栏（首页显示，聊天页隐藏） -->
+        <!-- 微信首页标题栏（首页显示，聊天页隐藏） -->
         <div class="navbar-home">
-            <div class="title">芒信</div>
+            <div class="title">微信</div>
             <div class="icons-right">
-                <i class="fas fa-search"></i>
-                <i class="fas fa-plus-circle"></i>
+                <i class="fas fa-search" title="搜索"></i>
+                <i class="fas fa-plus-circle" title="添加"></i>
             </div>
         </div>
 
@@ -319,6 +429,7 @@
         <div class="main-content" id="mainContent">
             <!-- 聊天会话列表容器 -->
             <div class="sessions-container">
+                <div class="pull-to-refresh" id="pullToRefresh">下拉刷新</div>
                 <div class="sessions-list" id="sessionsList">
                     <!-- 会话列表将通过JavaScript动态生成 -->
                 </div>
@@ -341,10 +452,10 @@
                     </div>
                     <div class="message received">
                         <div class="message-avatar">老</div>
-                        <div class="message-content">我重金购买了火种计划的门票，你收好。</div>
+                        <div class="message-content">我重金购买了火种计划的门票，你收好。这是关乎所有人未来的重要凭证，一定要妥善保管。</div>
                     </div>
                     <div class="message sent">
-                        <div class="message-content">那些留下的人怎么办？</div>
+                        <div class="message-content">那些留下的人怎么办？难道就只能任由他们暴露在X病毒的威胁下吗？我不能接受这样的安排。</div>
                         <div class="message-avatar">怡</div>
                     </div>
                     <div class="message-date">
@@ -352,7 +463,7 @@
                     </div>
                     <div class="message received">
                         <div class="message-avatar">老</div>
-                        <div class="message-content">不用去了，有方法解决X病毒了。</div>
+                        <div class="message-content">不用去了，有方法解决X病毒了。科研团队已经找到了病毒的抑制方案，很快就能普及到所有人。</div>
                     </div>
                 </div>
                 <!-- 聊天输入工具栏 -->
@@ -381,10 +492,10 @@
                     </div>
                     <div class="message received">
                         <div class="message-avatar">医</div>
-                        <div class="message-content">怡老董事长于MG20年2月1日突然离世。</div>
+                        <div class="message-content">怡老董事长于MG20年2月1日突然离世。经初步检查，死因疑似为仿生器官排异反应，但具体原因还需进一步化验。</div>
                     </div>
                     <div class="message sent">
-                        <div class="message-content">我马上到。</div>
+                        <div class="message-content">我马上到。请务必保护好现场，不要让任何人接触相关的医疗记录，我怀疑这不是简单的排异反应。</div>
                         <div class="message-avatar">怡</div>
                     </div>
                 </div>
@@ -414,7 +525,7 @@
                     </div>
                     <div class="message received">
                         <div class="message-avatar">侦</div>
-                        <div class="message-content">鸥，数据显示，更换仿生器官的富豪死亡率比贫民高出300%。这绝不是巧合。甄漂亮医院一定藏着秘密。</div>
+                        <div class="message-content">鸥，数据显示，更换仿生器官的富豪死亡率比贫民高出300%。这绝不是巧合。甄漂亮医院一定藏着秘密，我们查到他们的器官来源存在重大问题。</div>
                     </div>
                 </div>
                 <!-- 聊天输入工具栏 -->
@@ -442,7 +553,7 @@
                         <span class="date-label">MG20年3月18日 23:33</span>
                     </div>
                     <div class="message sent">
-                        <div class="message-content">计划已定。让怼怼扮成我，我去扮成她。甄初升，就让我们看看，谁才是最后的赢家。</div>
+                        <div class="message-content">计划已定。让怼怼扮成我，我去扮成她。甄初升，就让我们看看，谁才是最后的赢家。我要让他为所有的罪行付出代价，包括爷爷的死。</div>
                         <div class="message-avatar">怡</div>
                     </div>
                 </div>
@@ -461,36 +572,36 @@
         // 定义会话数据，包含最后一条消息的时间戳和内容
         const sessionsData = [
             {
-                id: 'helper',
-                name: '文件传输助手',
-                avatar: '文',
-                lastMessageTime: new Date('MG20-03-18T23:33:00').getTime(),
-                lastMessage: '计划已定。让怼怼扮成我，我去扮成她...',
-                displayTime: 'MG20-03-18'
-            },
-            {
-                id: 'detective',
-                name: '嘿嘿嘿侦探社',
-                avatar: '侦',
-                lastMessageTime: new Date('MG20-03-05T18:00:00').getTime(),
-                lastMessage: '数据显示，更换仿生器官的富豪死亡率比贫民高出300%...',
-                displayTime: 'MG20-03-05'
+                id: 'oldman',
+                name: '老爷子',
+                avatar: '老',
+                lastMessageTime: new Date('2023-05-12T08:45:00').getTime(), // 转换为时间戳
+                lastMessage: '不用去了，有方法解决X病毒了。',
+                displayTime: '今天'
             },
             {
                 id: 'doctor',
                 name: '不重要的主治医生',
                 avatar: '医',
-                lastMessageTime: new Date('MG20-02-01T05:22:00').getTime(),
-                lastMessage: '我马上到。',
-                displayTime: 'MG20-02-01'
+                lastMessageTime: new Date('2023-02-01T05:22:00').getTime(),
+                lastMessage: '怡老董事长于MG20年2月1日突然离世。',
+                displayTime: '昨天'
             },
             {
-                id: 'oldman',
-                name: '老爷子',
-                avatar: '老',
-                lastMessageTime: new Date('MG13-05-12T08:45:00').getTime(), // 转换为时间戳
-                lastMessage: '不用去了，有方法解决X病毒了。',
-                displayTime: 'MG13-05-12'
+                id: 'detective',
+                name: '嘿嘿嘿侦探社',
+                avatar: '侦',
+                lastMessageTime: new Date('2023-03-05T18:00:00').getTime(),
+                lastMessage: '数据显示，更换仿生器官的富豪死亡率比贫民高出300%...',
+                displayTime: '星期三'
+            },
+            {
+                id: 'helper',
+                name: '文件传输助手',
+                avatar: '文',
+                lastMessageTime: new Date('2023-03-18T23:33:00').getTime(),
+                lastMessage: '计划已定。让怼怼扮成我，我去扮成她...',
+                displayTime: '3-18'
             }
         ];
 
@@ -527,11 +638,11 @@
             bindSessionClickEvents();
         }
 
-        // 3. 绑定会话点击事件 - 新增：进入聊天页时隐藏芒信标题栏
+        // 3. 绑定会话点击事件 - 新增：进入聊天页时隐藏微信标题栏
         function bindSessionClickEvents() {
             document.querySelectorAll('.session-item').forEach(item => {
                 item.addEventListener('click', function() {
-                    // 隐藏芒信首页标题栏
+                    // 隐藏微信首页标题栏
                     document.querySelector('.navbar-home').style.display = 'none';
                     // 切换到聊天窗口
                     const chatId = 'chat' + this.dataset.chat.charAt(0).toUpperCase() + this.dataset.chat.slice(1);
@@ -542,9 +653,9 @@
             });
         }
 
-        // 4. 返回会话列表 - 新增：回到首页时显示芒信标题栏
+        // 4. 返回会话列表 - 新增：回到首页时显示微信标题栏
         function backToSessions() {
-            // 显示芒信首页标题栏
+            // 显示微信首页标题栏
             document.querySelector('.navbar-home').style.display = 'flex';
             // 切换回会话列表
             document.getElementById('sessionsList').parentElement.style.display = 'block';
@@ -571,6 +682,82 @@
             });
         }
 
+        // 7. 添加下拉刷新功能
+        function setupPullToRefresh() {
+            const container = document.querySelector('.sessions-container');
+            const pullToRefresh = document.getElementById('pullToRefresh');
+            let startY = 0;
+            let currentY = 0;
+            let isDragging = false;
+
+            container.addEventListener('touchstart', (e) => {
+                startY = e.touches[0].pageY;
+                isDragging = true;
+            });
+
+            container.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                
+                currentY = e.touches[0].pageY;
+                const diff = currentY - startY;
+                
+                if (diff > 0 && container.scrollTop === 0) {
+                    pullToRefresh.style.top = `${diff}px`;
+                    if (diff > 60) {
+                        pullToRefresh.textContent = '释放刷新';
+                    } else {
+                        pullToRefresh.textContent = '下拉刷新';
+                    }
+                }
+            });
+
+            container.addEventListener('touchend', () => {
+                if (pullToRefresh.offsetTop > 60) {
+                    pullToRefresh.textContent = '正在刷新...';
+                    // 模拟刷新操作
+                    setTimeout(() => {
+                        pullToRefresh.style.top = '-40px';
+                        pullToRefresh.textContent = '下拉刷新';
+                        // 这里可以添加实际的刷新逻辑
+                    }, 1000);
+                } else {
+                    pullToRefresh.style.top = '-40px';
+                }
+                isDragging = false;
+            });
+        }
+
+        // 8. 添加消息发送功能
+        function setupSendMessage() {
+            document.querySelectorAll('.input-box').forEach(inputBox => {
+                inputBox.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        const message = this.innerText.trim();
+                        if (message) {
+                            // 获取当前聊天窗口
+                            const chatView = this.closest('.chat-view');
+                            const messagesContainer = chatView.querySelector('.chat-messages');
+                            
+                            // 创建新的发送消息
+                            const messageDiv = document.createElement('div');
+                            messageDiv.className = 'message sent';
+                            messageDiv.innerHTML = `
+                                <div class="message-content">${message}</div>
+                                <div class="message-avatar">怡</div>
+                            `;
+                            
+                            messagesContainer.appendChild(messageDiv);
+                            this.innerHTML = '';
+                            
+                            // 滚动到底部
+                            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                        }
+                    }
+                });
+            });
+        }
+
         // 初始化应用
         function initApp() {
             // 渲染会话列表
@@ -582,6 +769,12 @@
             // 启动时钟
             updateTime();
             setInterval(updateTime, 60000);
+            
+            // 设置下拉刷新
+            setupPullToRefresh();
+            
+            // 设置消息发送
+            setupSendMessage();
         }
 
         // 页面加载完成后初始化
@@ -589,3 +782,6 @@
     </script>
 </body>
 </html>
+
+
+
