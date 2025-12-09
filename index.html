@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>怡千金的微信</title>
+    <title>怡千金的芒信</title>
     <meta name="theme-color" content="#07c160">
     <!-- PWA 支持 -->
     <link rel="manifest" href="manifest.json">
@@ -61,7 +61,7 @@
             font-size: 12px; 
         }
 
-        /* 2. 微信首页标题栏 - 恢复原有样式（首页显示） */
+        /* 2. 芒信首页标题栏 - 恢复原有样式（首页显示） */
         .navbar-home {
             height: 44px;
             background: #ededed;
@@ -373,7 +373,7 @@
             border-radius: 2px;
         }
         
-        /* 微信下拉刷新效果 */
+        /* 芒信下拉刷新效果 */
         .pull-to-refresh {
             position: absolute;
             top: -40px;
@@ -404,21 +404,10 @@
 </head>
 <body>
     <div id="app">
-        <!-- 顶部状态栏 -->
-        <div class="status-bar">
-            <div class="status-left">
-                <span class="time" id="currentTime">14:30</span>
-            </div>
-            <div class="status-right">
-                <i class="fas fa-signal" title="信号"></i>
-                <i class="fas fa-wifi" title="WiFi"></i>
-                <i class="fas fa-battery-three-quarters" title="电量"></i>
-            </div>
-        </div>
 
-        <!-- 微信首页标题栏（首页显示，聊天页隐藏） -->
+        <!-- 芒信首页标题栏（首页显示，聊天页隐藏） -->
         <div class="navbar-home">
-            <div class="title">微信</div>
+            <div class="title">芒信</div>
             <div class="icons-right">
                 <i class="fas fa-search" title="搜索"></i>
                 <i class="fas fa-plus-circle" title="添加"></i>
@@ -452,10 +441,10 @@
                     </div>
                     <div class="message received">
                         <div class="message-avatar">老</div>
-                        <div class="message-content">我重金购买了火种计划的门票，你收好。这是关乎所有人未来的重要凭证，一定要妥善保管。</div>
+                        <div class="message-content">我重金购买了火种计划的门票，你收好。</div>
                     </div>
                     <div class="message sent">
-                        <div class="message-content">那些留下的人怎么办？难道就只能任由他们暴露在X病毒的威胁下吗？我不能接受这样的安排。</div>
+                        <div class="message-content">那些留下的人怎么办？</div>
                         <div class="message-avatar">怡</div>
                     </div>
                     <div class="message-date">
@@ -463,7 +452,7 @@
                     </div>
                     <div class="message received">
                         <div class="message-avatar">老</div>
-                        <div class="message-content">不用去了，有方法解决X病毒了。科研团队已经找到了病毒的抑制方案，很快就能普及到所有人。</div>
+                        <div class="message-content">不用去了，有方法解决X病毒了。</div>
                     </div>
                 </div>
                 <!-- 聊天输入工具栏 -->
@@ -492,10 +481,10 @@
                     </div>
                     <div class="message received">
                         <div class="message-avatar">医</div>
-                        <div class="message-content">怡老董事长于MG20年2月1日突然离世。经初步检查，死因疑似为仿生器官排异反应，但具体原因还需进一步化验。</div>
+                        <div class="message-content">怡老董事长于MG20年2月1日突然离世。</div>
                     </div>
                     <div class="message sent">
-                        <div class="message-content">我马上到。请务必保护好现场，不要让任何人接触相关的医疗记录，我怀疑这不是简单的排异反应。</div>
+                        <div class="message-content">我马上到。</div>
                         <div class="message-avatar">怡</div>
                     </div>
                 </div>
@@ -525,7 +514,7 @@
                     </div>
                     <div class="message received">
                         <div class="message-avatar">侦</div>
-                        <div class="message-content">鸥，数据显示，更换仿生器官的富豪死亡率比贫民高出300%。这绝不是巧合。甄漂亮医院一定藏着秘密，我们查到他们的器官来源存在重大问题。</div>
+                        <div class="message-content">鸥，数据显示，更换仿生器官的富豪死亡率比贫民高出300%。这绝不是巧合。甄漂亮医院一定藏着秘密。</div>
                     </div>
                 </div>
                 <!-- 聊天输入工具栏 -->
@@ -553,7 +542,7 @@
                         <span class="date-label">MG20年3月18日 23:33</span>
                     </div>
                     <div class="message sent">
-                        <div class="message-content">计划已定。让怼怼扮成我，我去扮成她。甄初升，就让我们看看，谁才是最后的赢家。我要让他为所有的罪行付出代价，包括爷爷的死。</div>
+                        <div class="message-content">计划已定。让怼怼扮成我，我去扮成她。甄初升，就让我们看看，谁才是最后的赢家。</div>
                         <div class="message-avatar">怡</div>
                     </div>
                 </div>
@@ -572,20 +561,12 @@
         // 定义会话数据，包含最后一条消息的时间戳和内容
         const sessionsData = [
             {
-                id: 'oldman',
-                name: '老爷子',
-                avatar: '老',
-                lastMessageTime: new Date('2023-05-12T08:45:00').getTime(), // 转换为时间戳
-                lastMessage: '不用去了，有方法解决X病毒了。',
-                displayTime: '今天'
-            },
-            {
-                id: 'doctor',
-                name: '不重要的主治医生',
-                avatar: '医',
-                lastMessageTime: new Date('2023-02-01T05:22:00').getTime(),
-                lastMessage: '怡老董事长于MG20年2月1日突然离世。',
-                displayTime: '昨天'
+                id: 'helper',
+                name: '文件传输助手',
+                avatar: '文',
+                lastMessageTime: new Date('2023-03-18T23:33:00').getTime(),
+                lastMessage: '计划已定。让怼怼扮成我，我去扮成她...',
+                displayTime: '3月18日'
             },
             {
                 id: 'detective',
@@ -593,15 +574,23 @@
                 avatar: '侦',
                 lastMessageTime: new Date('2023-03-05T18:00:00').getTime(),
                 lastMessage: '数据显示，更换仿生器官的富豪死亡率比贫民高出300%...',
-                displayTime: '星期三'
+                displayTime: '3月5日'
             },
             {
-                id: 'helper',
-                name: '文件传输助手',
-                avatar: '文',
-                lastMessageTime: new Date('2023-03-18T23:33:00').getTime(),
-                lastMessage: '计划已定。让怼怼扮成我，我去扮成她...',
-                displayTime: '3-18'
+                id: 'doctor',
+                name: '不重要的主治医生',
+                avatar: '医',
+                lastMessageTime: new Date('2023-02-01T05:22:00').getTime(),
+                lastMessage: '我马上到。',
+                displayTime: '2月1日'
+            },
+            {
+                id: 'oldman',
+                name: '老爷子',
+                avatar: '老',
+                lastMessageTime: new Date('2023-05-12T08:45:00').getTime(), // 转换为时间戳
+                lastMessage: '不用去了，有方法解决X病毒了。',
+                displayTime: 'MG13年5月12日'
             }
         ];
 
@@ -638,11 +627,11 @@
             bindSessionClickEvents();
         }
 
-        // 3. 绑定会话点击事件 - 新增：进入聊天页时隐藏微信标题栏
+        // 3. 绑定会话点击事件 - 新增：进入聊天页时隐藏芒信标题栏
         function bindSessionClickEvents() {
             document.querySelectorAll('.session-item').forEach(item => {
                 item.addEventListener('click', function() {
-                    // 隐藏微信首页标题栏
+                    // 隐藏芒信首页标题栏
                     document.querySelector('.navbar-home').style.display = 'none';
                     // 切换到聊天窗口
                     const chatId = 'chat' + this.dataset.chat.charAt(0).toUpperCase() + this.dataset.chat.slice(1);
@@ -653,9 +642,9 @@
             });
         }
 
-        // 4. 返回会话列表 - 新增：回到首页时显示微信标题栏
+        // 4. 返回会话列表 - 新增：回到首页时显示芒信标题栏
         function backToSessions() {
-            // 显示微信首页标题栏
+            // 显示芒信首页标题栏
             document.querySelector('.navbar-home').style.display = 'flex';
             // 切换回会话列表
             document.getElementById('sessionsList').parentElement.style.display = 'block';
@@ -663,12 +652,12 @@
         }
 
         // 5. 实时更新时间
-        function updateTime() {
-            const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('currentTime').textContent = `${hours}:${minutes}`;
-        }
+        //function updateTime() {
+          // const now = new Date();
+          //  const hours = now.getHours().toString().padStart(2, '0');
+          //  const minutes = now.getMinutes().toString().padStart(2, '0');
+          //  document.getElementById('currentTime').textContent = `${hours}:${minutes}`;
+       // }
 
         // 6. 阻止输入框Enter键换行
         function setupInputBoxes() {
@@ -767,8 +756,8 @@
             setupInputBoxes();
             
             // 启动时钟
-            updateTime();
-            setInterval(updateTime, 60000);
+           // updateTime();
+           // setInterval(updateTime, 60000);
             
             // 设置下拉刷新
             setupPullToRefresh();
