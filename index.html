@@ -26,7 +26,7 @@
         .time { font-weight: 600; margin-right: 5px; }
         .status-right i { margin-left: 8px; font-size: 13px; }
 
-        /* 2. 芒信首页标题栏 */
+        /* 2. 芒信首页标题栏 - 恢复原有样式（首页显示） */
         .navbar-home {
             height: 44px;
             background: #ededed;
@@ -182,7 +182,7 @@
         .message {
             display: flex;
             margin-bottom: 20px;
-            align-items: flex-start; /* 头像与消息框底部对齐 */
+            align-items: flex-start; /* 头像与消息框顶部对齐 */
         }
         .message.received { justify-content: flex-start; }
         .message.sent { justify-content: flex-end; }
@@ -199,6 +199,8 @@
             justify-content: center;
             font-size: 18px;
             flex-shrink: 0;
+            /* 微调：增加一点顶部间距，视觉更自然 */
+            margin-top: 2px;
         }
         .message.received .message-avatar {
             margin-right: 10px; /* 接收消息头像右侧间距 */
@@ -304,7 +306,7 @@
             </div>
         </div>
 
-        <!-- 芒信首页标题栏 -->
+        <!-- 芒信首页标题栏（首页显示，聊天页隐藏） -->
         <div class="navbar-home">
             <div class="title">芒信</div>
             <div class="icons-right">
@@ -322,100 +324,7 @@
                 </div>
             </div>
 
-           
-           
-
-            <!-- 聊天窗口 4: 文件传输助手 -->
-            <div class="chat-view" id="chatHelper">
-                <div class="chat-header">
-                    <button class="chat-back-btn" onclick="backToSessions()">
-                        <i class="fas fa-arrow-left"></i>
-                    </button>
-                    <div class="chat-contact-name">文件传输助手</div>
-                    <button class="chat-more-btn">
-                        <i class="fas fa-ellipsis-v"></i>
-                    </button>
-                </div>
-                <div class="chat-messages">
-                    <div class="message-date">
-                        <span class="date-label">MG20年3月18日 23:33</span>
-                    </div>
-                    <div class="message sent">
-                        <div class="message-content">计划已定。让怼怼扮成我，我去扮成她。甄初升，就让我们看看，谁才是最后的赢家。</div>
-                        <div class="message-avatar">怡</div>
-                    </div>
-                </div>
-                <!-- 聊天输入工具栏 -->
-                <div class="chat-toolbar">
-                    <button class="tool-btn"><i class="fas fa-microphone"></i></button>
-                    <div class="input-box" contenteditable="true" placeholder="输入消息..."></div>
-                    <button class="tool-btn"><i class="far fa-smile"></i></button>
-                    <button class="tool-btn"><i class="fas fa-plus-circle"></i></button>
-                </div>
-            </div>
- <!-- 聊天窗口 3: 侦探社 -->
-            <div class="chat-view" id="chatDetective">
-                <div class="chat-header">
-                    <button class="chat-back-btn" onclick="backToSessions()">
-                        <i class="fas fa-arrow-left"></i>
-                    </button>
-                    <div class="chat-contact-name">嘿嘿嘿侦探社</div>
-                    <button class="chat-more-btn">
-                        <i class="fas fa-ellipsis-v"></i>
-                    </button>
-                </div>
-                <div class="chat-messages">
-                    <div class="message-date">
-                        <span class="date-label">MG20年3月5日 18:00</span>
-                    </div>
-                    <div class="message received">
-                        <div class="message-avatar">侦</div>
-                        <div class="message-content">鸥，数据显示，更换仿生器官的富豪死亡率比贫民高出300%。这绝不是巧合。甄漂亮医院一定藏着秘密。</div>
-                    </div>
-                </div>
-                <!-- 聊天输入工具栏 -->
-                <div class="chat-toolbar">
-                    <button class="tool-btn"><i class="fas fa-microphone"></i></button>
-                    <div class="input-box" contenteditable="true" placeholder="输入消息..."></div>
-                    <button class="tool-btn"><i class="far fa-smile"></i></button>
-                    <button class="tool-btn"><i class="fas fa-plus-circle"></i></button>
-                </div>
-            </div>
-            <!-- 聊天窗口 2: 主治医生 -->
-            <div class="chat-view" id="chatDoctor">
-                <div class="chat-header">
-                    <button class="chat-back-btn" onclick="backToSessions()">
-                        <i class="fas fa-arrow-left"></i>
-                    </button>
-                    <div class="chat-contact-name">不重要的主治医生</div>
-                    <button class="chat-more-btn">
-                        <i class="fas fa-ellipsis-v"></i>
-                    </button>
-                </div>
-                <div class="chat-messages">
-                    <div class="message-date">
-                        <span class="date-label">MG20年2月1日 05:21</span>
-                    </div>
-                    <div class="message received">
-                        <div class="message-avatar">医</div>
-                        <div class="message-content">怡老董事长于MG20年2月1日突然离世。</div>
-                    </div>
-                    <div class="message sent">
-                        <div class="message-content">我马上到。</div>
-                        <div class="message-avatar">怡</div>
-                    </div>
-                </div>
-                <!-- 聊天输入工具栏 -->
-                <div class="chat-toolbar">
-                    <button class="tool-btn"><i class="fas fa-microphone"></i></button>
-                    <div class="input-box" contenteditable="true" placeholder="输入消息..."></div>
-                    <button class="tool-btn"><i class="far fa-smile"></i></button>
-                    <button class="tool-btn"><i class="fas fa-plus-circle"></i></button>
-                </div>
-            </div>
-
-           
- <!-- 聊天窗口 1: 老爷子 -->
+            <!-- 聊天窗口 1: 老爷子 -->
             <div class="chat-view" id="chatOldman">
                 <div class="chat-header">
                     <button class="chat-back-btn" onclick="backToSessions()">
@@ -455,7 +364,96 @@
                 </div>
             </div>
 
-            
+            <!-- 聊天窗口 2: 主治医生 -->
+            <div class="chat-view" id="chatDoctor">
+                <div class="chat-header">
+                    <button class="chat-back-btn" onclick="backToSessions()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div class="chat-contact-name">不重要的主治医生</div>
+                    <button class="chat-more-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+                <div class="chat-messages">
+                    <div class="message-date">
+                        <span class="date-label">MG20年2月1日 05:21</span>
+                    </div>
+                    <div class="message received">
+                        <div class="message-avatar">医</div>
+                        <div class="message-content">怡老董事长于MG20年2月1日突然离世。</div>
+                    </div>
+                    <div class="message sent">
+                        <div class="message-content">我马上到。</div>
+                        <div class="message-avatar">怡</div>
+                    </div>
+                </div>
+                <!-- 聊天输入工具栏 -->
+                <div class="chat-toolbar">
+                    <button class="tool-btn"><i class="fas fa-microphone"></i></button>
+                    <div class="input-box" contenteditable="true" placeholder="输入消息..."></div>
+                    <button class="tool-btn"><i class="far fa-smile"></i></button>
+                    <button class="tool-btn"><i class="fas fa-plus-circle"></i></button>
+                </div>
+            </div>
+
+            <!-- 聊天窗口 3: 侦探社 -->
+            <div class="chat-view" id="chatDetective">
+                <div class="chat-header">
+                    <button class="chat-back-btn" onclick="backToSessions()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div class="chat-contact-name">嘿嘿嘿侦探社</div>
+                    <button class="chat-more-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+                <div class="chat-messages">
+                    <div class="message-date">
+                        <span class="date-label">MG20年3月5日 18:00</span>
+                    </div>
+                    <div class="message received">
+                        <div class="message-avatar">侦</div>
+                        <div class="message-content">鸥，数据显示，更换仿生器官的富豪死亡率比贫民高出300%。这绝不是巧合。甄漂亮医院一定藏着秘密。</div>
+                    </div>
+                </div>
+                <!-- 聊天输入工具栏 -->
+                <div class="chat-toolbar">
+                    <button class="tool-btn"><i class="fas fa-microphone"></i></button>
+                    <div class="input-box" contenteditable="true" placeholder="输入消息..."></div>
+                    <button class="tool-btn"><i class="far fa-smile"></i></button>
+                    <button class="tool-btn"><i class="fas fa-plus-circle"></i></button>
+                </div>
+            </div>
+
+            <!-- 聊天窗口 4: 文件传输助手 -->
+            <div class="chat-view" id="chatHelper">
+                <div class="chat-header">
+                    <button class="chat-back-btn" onclick="backToSessions()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div class="chat-contact-name">文件传输助手</div>
+                    <button class="chat-more-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+                <div class="chat-messages">
+                    <div class="message-date">
+                        <span class="date-label">MG20年3月18日 23:33</span>
+                    </div>
+                    <div class="message sent">
+                        <div class="message-content">计划已定。让怼怼扮成我，我去扮成她。甄初升，就让我们看看，谁才是最后的赢家。</div>
+                        <div class="message-avatar">怡</div>
+                    </div>
+                </div>
+                <!-- 聊天输入工具栏 -->
+                <div class="chat-toolbar">
+                    <button class="tool-btn"><i class="fas fa-microphone"></i></button>
+                    <div class="input-box" contenteditable="true" placeholder="输入消息..."></div>
+                    <button class="tool-btn"><i class="far fa-smile"></i></button>
+                    <button class="tool-btn"><i class="fas fa-plus-circle"></i></button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -529,10 +527,13 @@
             bindSessionClickEvents();
         }
 
-        // 3. 绑定会话点击事件
+        // 3. 绑定会话点击事件 - 新增：进入聊天页时隐藏芒信标题栏
         function bindSessionClickEvents() {
             document.querySelectorAll('.session-item').forEach(item => {
                 item.addEventListener('click', function() {
+                    // 隐藏芒信首页标题栏
+                    document.querySelector('.navbar-home').style.display = 'none';
+                    // 切换到聊天窗口
                     const chatId = 'chat' + this.dataset.chat.charAt(0).toUpperCase() + this.dataset.chat.slice(1);
                     document.getElementById('sessionsList').parentElement.style.display = 'none';
                     document.querySelectorAll('.chat-view').forEach(view => view.style.display = 'none');
@@ -541,8 +542,11 @@
             });
         }
 
-        // 4. 返回会话列表
+        // 4. 返回会话列表 - 新增：回到首页时显示芒信标题栏
         function backToSessions() {
+            // 显示芒信首页标题栏
+            document.querySelector('.navbar-home').style.display = 'flex';
+            // 切换回会话列表
             document.getElementById('sessionsList').parentElement.style.display = 'block';
             document.querySelectorAll('.chat-view').forEach(view => view.style.display = 'none');
         }
